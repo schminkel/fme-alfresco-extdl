@@ -32,5 +32,7 @@ OPEN ISSUES
 - Form-Filter for persons needs to be checked. seams not to work correctly.
 - Datalist model needs to be compared with the 4.2.3 initial model (duplication)
 
+- Correct pom information, developer, github etc.
+
 Nice to have:
 - Comment field does not render a tiny-mce textarea, fix this. This was reported as not working before forking the project.
