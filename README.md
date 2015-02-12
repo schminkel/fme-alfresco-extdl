@@ -1,9 +1,13 @@
 Datalist Extensions for Alfresco Share (for Alfresco 4.2.x)
 ===========================================================
 
-This project is the Alfresco 4.2.x port of fme's datalist extensions.  I switched to github and maven because I personally don't like svn and ant. For now, the documentation remains at [google](http://code.google.com/p/fme-alfresco-extensions/wiki/DatalistExtension).
+This project is the Alfresco 4.2.x port of fme's datalist extensions.
 
-Altough the project has not seen a lot of testing on 4.2.x - this version of Alfresco is now the primary target. The master branch may still work with 4.2.x.
+The initial documentation remains at [google](http://code.google.com/p/fme-alfresco-extensions/wiki/DatalistExtension).
+
+See this video of the initial Version from Jan for an overview of the functionality: https://www.youtube.com/watch?v=Z4GZ3IL_Cas
+
+The Project is in development right now (2015-02-12) in oder to get it working with Alfresco Enterprise 4.2.3.
 
 Installation
 ============
@@ -14,7 +18,8 @@ Installation
 
 Customization Example
 =====================
-See repo custom context for an approach: https://github.com/tass01024/fme-alfresco-extdl/blob/master/fme-alfresco-extdl-repo/example/my-custom-datalists-context.xml
+See repo custom context for an approach:
+https://github.com/tass01024/fme-alfresco-extdl/blob/master/fme-alfresco-extdl-repo/example/my-custom-datalists-context.xml
 
 
 OPEN ISSUES
