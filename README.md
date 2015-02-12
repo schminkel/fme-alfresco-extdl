@@ -17,4 +17,15 @@ Customization Example
 See repo custom context for an approach: https://github.com/tass01024/fme-alfresco-extdl/blob/master/fme-alfresco-extdl-repo/example/my-custom-datalists-context.xml
 
 
-Thanks Jan for supporting me !
+OPEN ISSUES
+===========
+- Clear form button does not work after opening the edit element dialog any more.
+- Filter on the left hand side (e.g. kürzlich hinzugefügt) does not work correct, maybe some date range issue!?
+- Form-Filter does not work correct with list "Aufgabeliste (Erweitert)" when nothing was filled out,
+  just clicking the button leads to empty results and should show all elements.
+
+- Form-Filter for persons needs to be checked. seams not to work correctly.
+- Datalist model needs to be compared with the 4.2.3 initial model (duplication)
+
+Nice to have:
+- Comment field does not render a tiny-mce textarea, fix this. This was reported as not working before forking the project.
