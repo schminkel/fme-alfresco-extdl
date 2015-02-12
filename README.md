@@ -5,8 +5,6 @@ This project is the Alfresco 4.2.x port of fme's datalist extensions.
 
 The initial documentation remains at [google](http://code.google.com/p/fme-alfresco-extensions/wiki/DatalistExtension).
 
-See this video of the initial Version from Jan for an overview of the functionality: https://www.youtube.com/watch?v=Z4GZ3IL_Cas
-
 The Project is in development right now (2015-02-12) in oder to get it working with Alfresco Enterprise 4.2.3.
 
 Installation
@@ -28,6 +26,8 @@ OPEN ISSUES
 - Filter on the left hand side (e.g. kürzlich hinzugefügt) does not work correct, maybe some date range issue!?
 - Form-Filter does not work correct with list "Aufgabeliste (Erweitert)" when nothing was filled out,
   just clicking the button leads to empty results and should show all elements.
+
+- Display of Versions seems not to work right now!
 
 - Form-Filter for persons needs to be checked. seams not to work correctly.
 - Datalist model needs to be compared with the 4.2.3 initial model (duplication)
