@@ -53,9 +53,9 @@
     <module>fme-alfresco-extdl-share</module>
   </modules>
   <properties>
-    <alfresco.version>4.2.f</alfresco.version><!-- works with 5.0.c also with version set to 4.2.f -->
+    <alfresco.version>4.2.3</alfresco.version><!-- works with 5.0.c also with version set to 4.2.f -->
     <spring.version>3.0.6.RELEASE</spring.version>
-    <spring.surf.version>1.2.0-SNAPSHOT</spring.surf.version>
+    <spring.surf.version>1.2.0-M24</spring.surf.version>
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.compiler.target>1.6</maven.compiler.target>
   </properties>
