@@ -9,7 +9,8 @@
       var filterDataRange =new Alfresco.FilterDateRange("${controlId}", "${fieldHtmlId}").setMessages(
          ${messages}
       );
-      
+
+      YAHOO.Bubbling.on("resetDataRange" , filterDataRange.onReady, filterDataRange);
       YAHOO.Bubbling.on("resetDataRange" , filterDataRange._handleFieldChangeFrom, filterDataRange);
       YAHOO.Bubbling.on("resetDataRange" , filterDataRange._handleFieldChangeTo, filterDataRange);
    })();
