@@ -82,56 +82,63 @@
        */
       onReady: function FilterDateRange_onReady()
       {
-         var toDate = new Date();
-         var fromDate = new Date();
-         fromDate.setMonth(toDate.getMonth() - 1);
-         
-         // construct the pickers
-         var page = (fromDate.getMonth() + 1) + "/" + fromDate.getFullYear();
-         var selected = (fromDate.getMonth() + 1) + "/" + fromDate.getDate() + "/" + fromDate.getFullYear();   
-         this.widgets.calendarFrom = new YAHOO.widget.Calendar(this.id + "-from", this.id + "-from", { title:this.msg("form.control.date-picker.choose"), close:true });
-         this.widgets.calendarFrom.cfg.setProperty("pagedate", page);
-         this.widgets.calendarFrom.cfg.setProperty("selected", selected);
-         this.widgets.calendarFrom.hideEvent.subscribe(function()
-         {
-            // Focus icon after calendar is closed
-            Dom.getElementsByClassName("datepicker-icon", "img", this.id + "-icon-from")[0].focus();
-         }, this, true);
-         Alfresco.util.calI18nParams(this.widgets.calendarFrom);
-         // setup keyboard enter events on the image instead of the link to get focus outline displayed
-         //3.4.d doesn't havve this util function...
-         if(Alfresco.util.useAsButton){
-        	 Alfresco.util.useAsButton(Dom.getElementsByClassName("datepicker-icon", "img", this.id + "-icon-from")[0], this._showPickerFrom, null, this);
-         }
+          // TODO TSL: Find better solution, event listener might be overwritten somewhere else
+          var thing = this;
+          setTimeout(function() {
 
-         page = (toDate.getMonth() + 1) + "/" + toDate.getFullYear();
-         selected = (toDate.getMonth() + 1) + "/" + toDate.getDate() + "/" + toDate.getFullYear();   
-         this.widgets.calendarTo = new YAHOO.widget.Calendar(this.id + "-to", this.id + "-to", { title:this.msg("form.control.date-picker.choose"), close:true });
-         this.widgets.calendarTo.cfg.setProperty("pagedate", page);
-         this.widgets.calendarTo.cfg.setProperty("selected", selected);
-         this.widgets.calendarTo.hideEvent.subscribe(function()
-         {
-            // Focus icon after calendar is closed
-            Dom.getElementsByClassName("datepicker-icon", "img", this.id + "-icon-to")[0].focus();
-         }, this, true);
-         Alfresco.util.calI18nParams(this.widgets.calendarTo);
-         // setup keyboard enter events on the image instead of the link to get focus outline displayed
-         //3.4.d doesn't havve this util function...
-         if(Alfresco.util.useAsButton){
-        	 Alfresco.util.useAsButton(Dom.getElementsByClassName("datepicker-icon", "img", this.id + "-icon-to")[0], this._showPickerTo, null, this);
-         }
+             var toDate = new Date();
+             var fromDate = new Date();
+             fromDate.setMonth(toDate.getMonth() - 1);
 
-         // setup events
-         this.widgets.calendarFrom.selectEvent.subscribe(this._handlePickerChangeFrom, this, true);
-         Event.addListener(this.id + "-date-from", "keyup", this._handleFieldChangeFrom, this, true);
-         Event.addListener(this.id + "-icon-from", "click", this._showPickerFrom, this, true);
-         this.widgets.calendarTo.selectEvent.subscribe(this._handlePickerChangeTo, this, true);
-         Event.addListener(this.id + "-date-to", "keyup", this._handleFieldChangeTo, this, true);
-         Event.addListener(this.id + "-icon-to", "click", this._showPickerTo, this, true);
-         
-         // render the calendar controls
-         this.widgets.calendarFrom.render();
-         this.widgets.calendarTo.render();
+             // construct the pickers
+             var page = (fromDate.getMonth() + 1) + "/" + fromDate.getFullYear();
+             var selected = (fromDate.getMonth() + 1) + "/" + fromDate.getDate() + "/" + fromDate.getFullYear();
+             thing.widgets.calendarFrom = new YAHOO.widget.Calendar(thing.id + "-from", thing.id + "-from", { title:thing.msg("form.control.date-picker.choose"), close:true, navigator:true });
+             thing.widgets.calendarFrom.cfg.setProperty("pagedate", page);
+             thing.widgets.calendarFrom.cfg.setProperty("selected", selected);
+             thing.widgets.calendarFrom.hideEvent.subscribe(function()
+             {
+                // Focus icon after calendar is closed
+                Dom.getElementsByClassName("datepicker-icon", "img", thing.id + "-icon-from")[0].focus();
+             }, thing, true);
+             Alfresco.util.calI18nParams(thing.widgets.calendarFrom);
+             // setup keyboard enter events on the image instead of the link to get focus outline displayed
+             //3.4.d doesn't havve thing util function...
+             if(Alfresco.util.useAsButton){
+                Alfresco.util.useAsButton(Dom.getElementsByClassName("datepicker-icon", "img", thing.id + "-icon-from")[0], thing._showPickerFrom, null, thing);
+             }
+
+             page = (toDate.getMonth() + 1) + "/" + toDate.getFullYear();
+             selected = (toDate.getMonth() + 1) + "/" + toDate.getDate() + "/" + toDate.getFullYear();
+             thing.widgets.calendarTo = new YAHOO.widget.Calendar(thing.id + "-to", thing.id + "-to", { title:thing.msg("form.control.date-picker.choose"), close:true, navigator:true });
+             thing.widgets.calendarTo.cfg.setProperty("pagedate", page);
+             thing.widgets.calendarTo.cfg.setProperty("selected", selected);
+             thing.widgets.calendarTo.hideEvent.subscribe(function()
+             {
+                // Focus icon after calendar is closed
+                Dom.getElementsByClassName("datepicker-icon", "img", thing.id + "-icon-to")[0].focus();
+             }, thing, true);
+             Alfresco.util.calI18nParams(thing.widgets.calendarTo);
+             // setup keyboard enter events on the image instead of the link to get focus outline displayed
+             //3.4.d doesn't havve thing util function...
+             if(Alfresco.util.useAsButton){
+                 Alfresco.util.useAsButton(Dom.getElementsByClassName("datepicker-icon", "img", thing.id + "-icon-to")[0], thing._showPickerTo, null, thing);
+             }
+
+             // setup events
+             thing.widgets.calendarFrom.selectEvent.subscribe(thing._handlePickerChangeFrom, thing, true);
+             Event.addListener(thing.id + "-date-from", "keyup", thing._handleFieldChangeFrom, thing, true);
+             Event.addListener(thing.id + "-icon-from", "click", thing._showPickerFrom, thing, true);
+             thing.widgets.calendarTo.selectEvent.subscribe(thing._handlePickerChangeTo, thing, true);
+             Event.addListener(thing.id + "-date-to", "keyup", thing._handleFieldChangeTo, thing, true);
+             Event.addListener(thing.id + "-icon-to", "click", thing._showPickerTo, thing, true);
+
+             // render the calendar controls
+             thing.widgets.calendarFrom.render();
+             thing.widgets.calendarTo.render();
+
+         }, 500);
+
       },
       
       /**
