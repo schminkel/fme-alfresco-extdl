@@ -32,6 +32,7 @@
            <h3 id="${id}-filterHeader">${msg("datalist.filter.header")}</h3>
            <div id="${id}-filterTwisterPanel">
                 <div id="${id}-filterform" style="width:900px"></div>
+                <div id="${id}-filterform-space">&nbsp;</div>
                 <button id="${id}-filterform-submit">${msg("filterform.submit")}</button>
                 <button id="${id}-filterform-clear">${msg("filterform.clear")}</button>
                 <#--<button id="${id}-filterform-save">${msg("filterform.save")}</button>-->
