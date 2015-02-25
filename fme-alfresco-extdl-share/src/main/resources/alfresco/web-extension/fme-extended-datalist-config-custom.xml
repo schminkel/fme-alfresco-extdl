@@ -2,26 +2,34 @@
 	<config>
    		<forms>
       		<dependencies>
-         		<js src="/components/form/version.js" />
-         		<css src="/components/data-lists/datalist-versions.css" />
-         		<js src="/components/data-lists/datalist-versions.js" />
-         		<js src="/components/form/attachments.js" />
-         		<js src="/components/form/attachmentsMod.js" />
-         		<js src="/modules/documentlibrary/global-folder.js" />
-         		<css src="/modules/documentlibrary/global-folder.css" />
+         		<!--<js src="/components/form/version.js" />-->
+         		<!--<css src="/components/data-lists/datalist-versions.css" />-->
+         		<!--<js src="/components/data-lists/datalist-versions.js" />-->
+         		
+                <!--<js src="/components/form/attachments.js" />-->
+         		<!--<js src="/components/form/attachmentsMod.js" />-->
+         		
+                <!--<js src="/modules/documentlibrary/global-folder.js" />-->
+         		<!--<css src="/modules/documentlibrary/global-folder.css" />-->
+                
          		<js src="/modules/simple-view-dialog.js" />
-         		<css src="/components/form/comments.css" />
-         		<js src="/components/form/comments.js" />
-         		<css src="/components/blog/createcomment.css" />
-         		<js src="/components/blog/createcomment.js" />
-         		<js src="/components/blog/blogdiscussions-common.js" />
-         		<js src="/components/upload/file-upload.js" />
-         		<js src="/components/upload/flash-upload.js" />
-         		<js src="/components/upload/html-upload.js" />
-         		<css src="/components/upload/html-upload.css" />
-         		<css src="/components/upload/flash-upload.css" />
+                
+         		<!--css src="/components/form/comments.css" /-->
+         		<!--js src="/components/form/comments.js" /-->
+         		
+                <!--css src="/components/blog/createcomment.css" /-->
+         		<!--js src="/components/blog/createcomment.js" /-->
+         		
+                <!--<js src="/components/blog/blogdiscussions-common.js" />-->
+         		<!--<js src="/components/upload/file-upload.js" />-->
+         		<!--<js src="/components/upload/flash-upload.js" />-->
+         		<!--<js src="/components/upload/html-upload.js" />-->
+         		<!--<css src="/components/upload/html-upload.css" />-->
+         		<!--<css src="/components/upload/flash-upload.css" />-->
+                
          		<js src="/components/form/filter-date-range.js" />
-      			<js src="/components/form/workflow/activiti-transitions.js"/>
+                
+      			<!--<js src="/components/form/workflow/activiti-transitions.js"/>-->
       		</dependencies>
 	   </forms>
 	</config>   
@@ -58,7 +66,7 @@
          </form>
          <form id="datagrid">
             <field-visibility>
-               <show id="dl:itemId" />
+               <!--show id="dl:itemId" /-->
                <show id="cm:title" />
                <show id="cm:description" />
                <!-- dl:simpletask type -->
@@ -66,72 +74,74 @@
                <show id="dl:simpletaskPriority" />
                <show id="dl:simpletaskStatus" />
                <hide id="dl:simpletaskComments"/>
-               <show id="fm:discussable" force="true"/>
+               <!--show id="fm:discussable" force="true"/-->
             </field-visibility>
          </form>
          <form id="filter">
             <field-visibility>
                <!-- cm:titled aspect -->
                <show id="cm:title" />
-               <show id="dl:itemId" />
+               <!--show id="dl:itemId" /-->
                <show id="cm:description" />
                <!-- dl:simpletask type -->
                <show id="cm:creator" />
                <show id="dl:simpletaskPriority" />
-               <hide id="dl:simpletaskComments"/>
+               <!--hide id="dl:simpletaskComments"/-->
                <show id="dl:simpletaskStatus" />
                <show id="dl:simpletaskDueDate" />
                <show id="cm:created" />
             </field-visibility>
             <appearance>
-               <set id="normal" template="/org/alfresco/components/form/3-column-set.ftl"/>
-               <field id="cm:title" set="normal">
+               <set id="first" template="/org/alfresco/components/form/3-column-set.ftl"/>
+               <set id="second" template="/org/alfresco/components/form/3-column-set.ftl"/>
+                <set id="third" template="/org/alfresco/components/form/3-column-set.ftl"/>
+               <field id="cm:title" set="first">
                   <control template="/org/alfresco/components/form/controls/textfield.ftl" >
                   	<control-param name="style">width:250px</control-param>
                   </control>
                </field>
-               <field id="dl:itemId" set="normal" label-id="form.label.itemid">
+               <!--field id="dl:itemId" set="normal" label-id="form.label.itemid">
 	               <control template="/org/alfresco/components/form/controls/textfield.ftl" >
                   	<control-param name="style">width:250px</control-param>
                   </control>
-               </field>
-               <field id="cm:description" set="normal">
+               </field-->
+               <field id="cm:description" set="first">
                   <control template="/org/alfresco/components/form/controls/textfield.ftl" >
                   	<control-param name="style">width:250px</control-param>
                   </control>
-               </field> 
-               <field id="dl:simpletaskDueDate" set="normal">
-               		<control template="/org/alfresco/components/form/controls/filter-daterange.ftl">
-               			<control-param name="style">width:250px</control-param>
-               		</control>
                </field>
-               <field id="dl:simpletaskPriority" set="normal" >
+                <field id="cm:creator" set="first" mandatory="false">
+                    <control template="/org/alfresco/components/form/controls/extended-textfield.ftl">
+                        <control-param name="forceEditable">true</control-param>
+                        <control-param name="style">width:250px</control-param>
+                    </control>
+                </field>
+               
+               <field id="dl:simpletaskPriority" set="second" >
 	               	<control template="/org/alfresco/components/form/controls/filter-selectmany.ftl">
 	             		<control-param name="style">width:250px</control-param>
 						<control-param name="defaultValues">High,Low,Normal</control-param>
 						<control-param name="size">4</control-param>
 					</control>	
                </field>
-               <field id="dl:simpletaskStatus" set="normal">
+               <field id="dl:simpletaskStatus" set="second">
                		<control template="/org/alfresco/components/form/controls/filter-selectmany.ftl">
 	             		<control-param name="style">width:250px</control-param>
 	             		<control-param name="defaultValues">Not Started,In Progress,Complete,On Hold</control-param>
 	             		<control-param name="size">4</control-param>
 	             	</control>
                </field>
-               <field id="cm:creator" set="normal" mandatory="false">
-               		<control template="/org/alfresco/components/form/controls/textfield.ftl">
-               			<control-param name="forceEditable">true</control-param>
-               			<control-param name="style">width:250px</control-param>
-               		</control>
-               	</field>
-               <field id="cm:created" set="normal" mandatory="false">
-               		<control template="/org/alfresco/components/form/controls/filter-daterange.ftl">
-               			<control-param name="forceEditable">true</control-param>
-               			<control-param name="style">width:250px</control-param>
-               		</control>
-               </field>
-               
+                <field id="dl:simpletaskDueDate" set="third">
+                    <control template="/org/alfresco/components/form/controls/filter-daterange.ftl">
+                        <control-param name="style">width:250px</control-param>
+                    </control>
+                </field>
+                <field id="cm:created" set="third" mandatory="false">
+                    <control template="/org/alfresco/components/form/controls/filter-daterange.ftl">
+                        <control-param name="forceEditable">true</control-param>
+                        <control-param name="style">width:250px</control-param>
+                    </control>
+                </field>
             </appearance>
          </form>
       </forms>
@@ -145,7 +155,7 @@
             <field-visibility>
                <!-- cm:titled aspect -->
                <show id="cm:title" />
-               <show id="dl:itemId" />
+               <!--show id="dl:itemId" /-->
                <show id="cm:description" />
                <!-- dl:simpletask type -->
                <show id="dl:simpletaskDueDate" />
@@ -154,11 +164,14 @@
                <show id="dl:simpletaskStatus" />
                <show id="cm:creator" />
                <show id="cm:created" />
-               <show id="fm:discussable"/>
-               <show id="cm:versionable"/>
+               <!--show id="fm:discussable"/-->
+               <!--show id="cm:versionable"/-->
             </field-visibility>
-            <edit-form template="../data-lists/forms/dataitem-edit.ftl" />
-            <view-form template="../data-lists/forms/dataitem-view.ftl" />
+            
+             <!--edit-form template="../data-lists/forms/dataitem-edit.ftl" />
+             <view-form template="../data-lists/forms/dataitem-view.ftl" /-->
+             <edit-form template="../data-lists/forms/dataitem.ftl" />
+             
             <appearance>
                <set id="normal" appearance=""/>
                <set id="other" appearance=""/>	
@@ -167,9 +180,9 @@
                   	<control-param name="style">width:450px</control-param>
                   </control>
                </field>
-               <field id="dl:itemId" set="normal" label-id="form.label.itemid">
+               <!--field id="dl:itemId" set="normal" label-id="form.label.itemid">
 	               <control template="/org/alfresco/components/form/controls/info.ftl" />
-               </field>
+               </field-->
                <field id="cm:description" set="normal">
                   <control template="/org/alfresco/components/form/controls/textarea.ftl">
                   	<control-param name="rows">10</control-param>
@@ -183,14 +196,14 @@
                		<control template="/org/alfresco/components/form/controls/extended-person.ftl"/>
                	</field>
                <field id="cm:created" set="normal" read-only="true"/>
-               <field id="fm:discussable" label-id="form.label.comments" set="other">
+               <!--field id="fm:discussable" label-id="form.label.comments" set="other">
                   <control template="/org/alfresco/components/form/controls/comments.ftl">
                   	<control-param name="style">width:450px;</control-param>
                   </control>
                </field>
                <field id="cm:versionable" label-id="form.label.version-history" set="normal">
                   <control template="/org/alfresco/components/form/controls/version.ftl" />
-               </field>
+               </field-->
             </appearance>
          </form>
       </forms>

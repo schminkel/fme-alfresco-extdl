@@ -198,13 +198,14 @@
       {
     	 Alfresco.component.ExtDataGrid.superclass.onReady.call(this);
          
-         // FilterForm Submit button
+         // FilterForm Submit Button
          this.widgets.filterFormSubmit = Alfresco.util.createYUIButton(this, "filterform-submit", this.onFilterFormSubmit);
+         // FilterForm Reset Button
          this.widgets.filterFormClear = Alfresco.util.createYUIButton(this, "filterform-clear", this.onFilterFormClear);
-         // FilterForm Save button..not yet
-         //this.widgets.filterFormSave = Alfresco.util.createYUIButton(this, "filterform-save", this.onFilterFormSave);
          
          Alfresco.util.createTwister(this.id+"-filterHeader", "datalistformfilter");
+          
+         
       },
    	  
 	  /**
@@ -311,6 +312,8 @@
                scope: this
             }
          }).show();
+          
+          
       },
       /**
        * Edit Data Item pop-up
@@ -332,7 +335,7 @@
          var viewDetails = new Alfresco.module.SimpleViewDialog(this.id + "-viewDetails");
          viewDetails.setOptions(
          {
-            width: "1000px",
+            width: "600px",
             templateUrl: templateUrl
          }).show();
       },
@@ -509,7 +512,7 @@
       },
       
       /**
-       * Event callback when filtr template has been loaded
+       * Event callback when filter template has been loaded
        *
        * @method onFilterFormTemplateLoaded
        * @param response {object} Server response from load template XHR request
@@ -530,26 +533,18 @@
       },
       
       onFilterFormSubmit: function ExtDataGrid_onFilterFormSubmit(){
-    	  //alert(this.formsRuntime.getFormData());
     	  YAHOO.Bubbling.fire("changeFilter",
           {
              filterOwner: this.id,
              filterId: "filterform",
-             filterData: Alfresco.util.toQueryString(this.formsRuntime.getFormData())
+             filterData: Alfresco.util.toQueryString(this.myFilterFormsRuntime.getFormData())
           });
       },
-//      onFilterFormSave: function ExtDataGrid_onFilterFormSave(){
-//          Alfresco.util.PopupManager.getUserInput({
-//              okButtonText : "Speichern"
-//          });
-//          
-//      },
       
       onFilterFormClear: function ExtDataGrid_onFilterFormClear(){
-          //alert(this.formsRuntime.getFormData());
     	  this.currentFilter="";
-    	  this.formsRuntime.reset();
-    	  
+          this.myFilterFormsRuntime.reset();
+          
     	  YAHOO.Bubbling.fire("resetDataRange");
     	  YAHOO.Bubbling.fire("resetFinder");
     	  YAHOO.Bubbling.fire("changeFilter");
@@ -590,7 +585,7 @@
             
             this._addSortingToNewFilter(this.currentFilter, this.sortAsc, this.sortColumn);
             
-            if (this.currentFilter.filterId == "filterform" && this.formsRuntime){
+            if (this.currentFilter.filterId == "filterform" && this.formsRuntime && this.formsRuntime.formId.indexOf("extDgFilterForm") > 0){
             	// refill filter form
             	var filterData =  Alfresco.util.getQueryStringParameters(this.currentFilter.filterData);
             	
@@ -673,8 +668,13 @@
       */
       onBeforeFormRuntimeInit: function ExtDataGrid_onBeforeFormRuntimeInit(layer, args)
      {
-        this.formUI = args[1].component;
-        this.formsRuntime = args[1].runtime;
+         this.formUI = args[1].component;
+         this.formsRuntime = args[1].runtime;
+
+         // store formsRuntime of the Datalist Filter-Form for later usage
+         if (this.formsRuntime && this.formsRuntime.formId.indexOf("extDgFilterForm") > 0){
+             this.myFilterFormsRuntime = this.formsRuntime;
+         }
      },
      
      /**
@@ -1102,6 +1102,8 @@
                 scope : this,
              }
          });
-     }   
-   }, true);
+     }
+
+
+       }, true);
 })();

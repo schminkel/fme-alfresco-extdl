@@ -1,0 +1,20 @@
+<extension>
+	<modules>
+		<module>
+			<id>westernacher-extension</id>
+			<auto-deploy>true</auto-deploy>
+
+			<!-- Ensures that all extensions under: -->
+			<!-- "src/main/resources/alfresco/webscripts/com/westernacher/extensions/org/alfresco" -->
+			<!-- are loaded -->
+			<customizations>
+				<customization>
+					<targetPackageRoot>org.alfresco</targetPackageRoot>
+					<sourcePackageRoot>com.westernacher.extensions.org.alfresco</sourcePackageRoot>
+					<dependencies></dependencies>
+				</customization>
+			</customizations>
+
+		</module>
+	</modules>
+</extension>
